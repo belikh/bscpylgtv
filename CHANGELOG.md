@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.5.5.post1 (belikh fork)
+**Fixed bugs:**
+
+- Fix deadlock when the TV reports a power-off state. `set_power_state` awaited `disconnect()` inside a state callback task, while the connection teardown waits for that task and swallows the cancel that `disconnect()` forwards to it. `set_power_state` now runs `disconnect()` as a separate task.
+
 ## [v0.5.5](https://github.com/chros73/bscpylgtv/tree/v0.5.5) (2025-09-30)
 **Implemented enhancements:**
 
